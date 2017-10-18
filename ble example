@@ -1,0 +1,19 @@
+#include <project.h>
+void Stack_Handler(uint32 eventCode, void *eventParam){
+switch(eventCode){
+case CYBLE_EVT_STACK_ON:
+case CYBLE_EVT_GAP_DEVICE_DISCONNECTED:
+CyBle_GappStartAdvertisement( CYBLE_ADVERTISING_FAST);
+break;
+dafault:break;
+}
+
+}
+int main(){
+CyBle_Start(Stack_Handler);
+CyGlobalIntEnable;
+for(;;){
+CyBle_ProcessEvents();
+}
+}
+//[] END OF FILE
